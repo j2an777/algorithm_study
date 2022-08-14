@@ -1,0 +1,13 @@
+a, b, c = map(int, input().split())
+n = 0
+cnt = 0
+
+while True :
+    cnt = cnt + 1         #하루가 지났기에 1값 증가
+    n = n + a             #먼저 올라가기에 a값 증가
+    
+    if (n >= c) :         #목표 거리에 도달했는지 판별
+        print(cnt)
+        break
+    else :                #도달 안했으면 밤이 오기에 내려가기
+         n = n - b
