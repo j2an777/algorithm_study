@@ -1,0 +1,9 @@
+a, b = map(int, input().split())
+aSet = set(map(int, input().split()))
+bSet = set(map(int, input().split()))
+
+maSet = aSet - bSet
+mbSet = bSet - aSet
+
+res = len(maSet) +len(mbSet)
+print(res)
