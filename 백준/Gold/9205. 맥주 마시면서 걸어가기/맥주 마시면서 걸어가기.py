@@ -44,4 +44,10 @@ for i in range(t) :
     end = list(map(int, input().split()))
     visited = []
     
-    print(bfs(start, conv, end))
+    res.append(bfs(start, conv, end))
+    
+for i in res :
+    if i == 'happy' :
+        print('happy')
+    else :
+        print('sad')
