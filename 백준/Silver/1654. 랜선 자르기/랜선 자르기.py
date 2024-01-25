@@ -6,7 +6,7 @@ res = 0
 
 start = 1
 
-end = max(line)
+end = sum(line) // n
 
 while start <= end :
     mid = (start + end) // 2
