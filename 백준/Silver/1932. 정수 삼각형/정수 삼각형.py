@@ -1,20 +1,23 @@
-def dfs(x, y):
-    # 탐색이 삼각형의 범위를 벗어났는지 확인
-    if x >= n:
-        return 0
-    # 이미 방문한 노드의 최대 합이 계산되어 있다면 재활용
-    if dp[x][y] != -1:
-        return dp[x][y]
-    
-    # 현재 위치에서 선택할 수 있는 두 경로 중 최대 합을 찾아 현재 노드 값과 합산
-    dp[x][y] = triangle[x][y] + max(dfs(x + 1, y), dfs(x + 1, y + 1))
-    return dp[x][y]
-
 n = int(input())
-triangle = []
-dp = [[-1 for _ in range(n)] for _ in range(n)]  # 메모이제이션을 위한 DP 테이블 초기화
+num = []
 
-for i in range(n):
-    triangle.append(list(map(int, input().split())))
+for i in range(n) :
+    num.append(list(map(int, input().split())))
+    
+dp = [[0] * (i + 1) for i in range(n)]
 
-print(dfs(0, 0))
+dp[0][0] = num[0][0]
+
+for i in range(1, n) :
+    for j in range(i+1) :
+        # 각 열의 0번째 행은 그 위의 열의 0번째 행과 합
+        if j == 0 :
+            dp[i][j] = dp[i-1][j] + num[i][j]
+        # 각 열의 마지막 행은 그 위의 열의 마지막 행
+        elif j == i :
+            dp[i][j] = dp[i-1][j-1] + num[i][j]
+        # 그 외 나머지 행들은 왼쪽 위와 바로 위 중 최댓값으로 합
+        else :
+            dp[i][j] = max(dp[i-1][j-1], dp[i-1][j]) + num[i][j]
+        
+print(max(dp[-1]))
